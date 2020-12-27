@@ -5,8 +5,6 @@ import pyowm
 token = '58435cbc1f5620f416b870173b8e6731'
 owm = pyowm.OWM(token)
 
-mgr = owm.weather_manager()
-
 bot = telebot.TeleBot('1272902110:AAHb4KMzU1jOxeAW4mUNz1rYA8AMLJ0kvqs')
 
 name_list = ['Алиса', 'Александра', 'Алёна', 'Алина', 'Алла', 'Анастасия', 'Анжелика', 'Анна', 'Валентина', 'Валерия', 'Вера', 'Вероника',
@@ -37,14 +35,14 @@ def get_text_messages(message):
         bot.send_message(message.from_user.id, random.randrange(1, 100, 1))
     elif '/weather' in message.text.lower():
         observation = mgr.weather_at_place('Novgorod')
-        w = observation.weather
-        st = w.detailed_status
-        status = w.temperature('celsius')
-        now_temp, min_temp, max_temp, temp_like = status['temp'], status['temp_min'], status['temp_max'], status['feels_like']
+        w = observation.get_weather()
+        temp = w.get_temperature('celsius')['temp']
+        status = w.get_temperature('celsius')
+        st = w.get_detailed_status()
+        now_temp, min_temp, max_temp = status['temp'], status['temp_min'], status['temp_max']
         bot.send_message(message.from_user.id, f'Температура на данный момент:  {round(now_temp)}')
         bot.send_message(message.from_user.id, f'Минимальная температур:  {round(min_temp)}')
         bot.send_message(message.from_user.id, f'Максимальная температура:  {round(max_temp)}')
-        bot.send_message(message.from_user.id, f'Ощущается как:  {round(temp_like)}')
         bot.send_message(message.from_user.id, f'Статус:  {st}')
     else:
         bot.send_message(message.from_user.id, 'Я тебя не понимаю. Напиши /help.')
