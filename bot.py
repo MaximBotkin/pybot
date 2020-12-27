@@ -26,7 +26,7 @@ def get_text_messages(message):
         bot.send_message(message.from_user.id, 'Привет, чем я могу тебе помочь?')
     elif message.text == "/help":
         bot.send_message(message.from_user.id, '1. Имя дня(/name)\n2. Рандомайзер(/number)\n3.Узнать текущую '
-                                               'температуру в '
+                                               'погоду в '
                                                'вашем городе(/weather)')
     elif 'бот' in message.text.lower():
         bot.send_message(message.from_user.id, 'Бот - машина, машина - совершенный механизм!')
