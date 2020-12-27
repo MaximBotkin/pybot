@@ -3,7 +3,7 @@ import random
 import pyowm
 
 token = '58435cbc1f5620f416b870173b8e6731'
-owm = pyowm.OWM(token)
+owm = pyowm.OWM(token, language="RU")
 
 bot = telebot.TeleBot('1272902110:AAHb4KMzU1jOxeAW4mUNz1rYA8AMLJ0kvqs')
 
@@ -41,8 +41,8 @@ def get_text_messages(message):
         st = w.get_detailed_status()
         now_temp, min_temp, max_temp = status['temp'], status['temp_min'], status['temp_max']
         bot.send_message(message.from_user.id, f'Температура на данный момент:  {round(now_temp)}')
-        bot.send_message(message.from_user.id, f'Минимальная температур:  {round(min_temp)}')
-        bot.send_message(message.from_user.id, f'Максимальная температура:  {round(max_temp)}')
+        bot.send_message(message.from_user.id, f'Минимальная температура:  {int(min_temp)}')
+        bot.send_message(message.from_user.id, f'Максимальная температура:  {int(max_temp)}')
         bot.send_message(message.from_user.id, f'Статус:  {st}')
     else:
         bot.send_message(message.from_user.id, 'Я тебя не понимаю. Напиши /help.')
