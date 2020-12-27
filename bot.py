@@ -34,7 +34,7 @@ def get_text_messages(message):
         bot.send_message(message.from_user.id, 'Рандомное число от 1 до 100: ')
         bot.send_message(message.from_user.id, random.randrange(1, 100, 1))
     elif '/weather' in message.text.lower():
-        observation = mgr.weather_at_place('Novgorod')
+        observation = owm.weather_at_place('Novgorod')
         w = observation.get_weather()
         temp = w.get_temperature('celsius')['temp']
         status = w.get_temperature('celsius')
