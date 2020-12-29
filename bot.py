@@ -1,6 +1,8 @@
 import telebot
 import random
 import pyowm
+import datetime
+import holidays
 
 token = '58435cbc1f5620f416b870173b8e6731'
 owm = pyowm.OWM(token, language="RU")
@@ -25,7 +27,7 @@ def get_text_messages(message):
     elif message.text == "/help":
         bot.send_message(message.from_user.id, '1. Имя дня(/name)\n2. Рандомайзер(/number)\n3.Узнать текущую '
                                                'погоду в '
-                                               'вашем городе(/weather)')
+                                               'вашем городе(/weather)\n4. Узнать какой сегодня праздник(/day)')
     elif 'бот' in message.text.lower():
         bot.send_message(message.from_user.id, 'Бот - машина, машина - совершенный механизм!')
     elif '/name' in message.text.lower():
@@ -44,6 +46,16 @@ def get_text_messages(message):
         bot.send_message(message.from_user.id, f'Минимальная температура:  {int(min_temp)}')
         bot.send_message(message.from_user.id, f'Максимальная температура:  {int(max_temp)}')
         bot.send_message(message.from_user.id, f'Статус:  {st}')
+    elif '/day' in message.text.lower():
+        day = datetime.date.today()
+        uk_holidays = holidays.UnitedKingdom()
+        result = (uk_holidays.get(day))
+        if result is None:
+            bot.send_message(message.from_user.id, 'Сегодня нет никаких праздников:(')
+        else:
+            bot.send_message(message.from_user.id, result)
+    elif 'пока' in message.text.lower():
+        bot.send_message(message.from_user.id, 'Пока, буду тебя ждать!')
     else:
         bot.send_message(message.from_user.id, 'Я тебя не понимаю. Напиши /help.')
 
