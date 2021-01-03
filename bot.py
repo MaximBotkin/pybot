@@ -4,10 +4,10 @@ import pyowm
 import datetime
 import holidays
 
-token = '1272902110:AAHNpBvecpeJvoOXskuokd8VDLKsRhKjUxk'
+token = '1479537455:AAGMzn8WpDD3b12cIsnTkjk-MLSzSSExz14'
 owm = pyowm.OWM(token, language="RU")
 
-bot = telebot.TeleBot('1272902110:AAHb4KMzU1jOxeAW4mUNz1rYA8AMLJ0kvqs')
+bot = telebot.TeleBot(token)
 
 name_list = ['Алиса', 'Александра', 'Алёна', 'Алина', 'Алла', 'Анастасия', 'Анжелика', 'Анна', 'Валентина', 'Валерия', 'Вера', 'Вероника',
              'Виктория', 'Галина', 'Дарья', 'Диана', 'Ева', 'Ева', 'Евгения', 'Екатерина', 'Алёна', 'Елена', 'Елизавета', 'Жанна', 'Инна',
