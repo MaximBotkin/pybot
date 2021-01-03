@@ -4,7 +4,7 @@ import pyowm
 import datetime
 import holidays
 
-token = '58435cbc1f5620f416b870173b8e6731'
+token = '1272902110:AAHb4KMzU1jOxeAW4mUNz1rYA8AMLJ0kvqs'
 owm = pyowm.OWM(token, language="RU")
 
 bot = telebot.TeleBot('1272902110:AAHb4KMzU1jOxeAW4mUNz1rYA8AMLJ0kvqs')
