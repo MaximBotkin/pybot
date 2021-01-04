@@ -5,7 +5,10 @@ import datetime
 import holidays
 
 token = '1479537455:AAGMzn8WpDD3b12cIsnTkjk-MLSzSSExz14'
-owm = pyowm.OWM(token, language="RU")
+token1 = '58435cbc1f5620f416b870173b8e6731'
+
+
+owm = pyowm.OWM(token1, language="RU")
 
 bot = telebot.TeleBot(token)
 
@@ -36,7 +39,7 @@ def get_text_messages(message):
         bot.send_message(message.from_user.id, 'Рандомное число от 1 до 100: ')
         bot.send_message(message.from_user.id, random.randrange(1, 100, 1))
     elif '/weather' in message.text.lower():
-        observation = owm.weather_at_place('Санкт-Петербург')
+        observation = owm.weather_at_place('Великий Новгород')
         w = observation.get_weather()
         temp = w.get_temperature('celsius')['temp']
         status = w.get_temperature('celsius')
